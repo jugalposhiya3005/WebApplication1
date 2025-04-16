@@ -34,7 +34,7 @@ jobs:
         script: |
           sudo systemctl stop webapplication1.service
 
-    - name: Copy files to EC2
+    - name: Deploy build to EC2
       uses: appleboy/scp-action@v0.1.3
       with:
         host: ${{ secrets.EC2_HOST }}
