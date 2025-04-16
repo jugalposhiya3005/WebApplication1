@@ -45,6 +45,7 @@ jobs:
         script: |
            cd /home/ubuntu/WebApplication1
            git pull origin master
+           dotnet build 
            dotnet publish -c Release -o out
            sudo systemctl start webapplication1.service
 
