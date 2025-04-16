@@ -27,15 +27,6 @@ jobs:
         script: |
           sudo systemctl stop webapplication1.service
 
-    - name: Deploy build to EC2
-      uses: appleboy/scp-action@v0.1.3
-      with:
-        host: ${{ secrets.EC2_HOST }}
-        username: ${{ secrets.EC2_USER }}
-        key: ${{ secrets.EC2_KEY }}
-        source: "out/"
-        target: "/home/ubuntu/WebApplication1/out"
-
     - name: Start service on EC2
       uses: appleboy/ssh-action@master
       with:
@@ -48,5 +39,14 @@ jobs:
            dotnet build 
            dotnet publish -c Release -o out
            sudo systemctl start webapplication1.service
+
+    - name: Deploy build to EC2
+      uses: appleboy/scp-action@v0.1.3
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USER }}
+        key: ${{ secrets.EC2_KEY }}
+        source: "out/"
+        target: "/home/ubuntu/WebApplication1/out"
 
 
