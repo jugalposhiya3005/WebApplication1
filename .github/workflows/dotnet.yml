@@ -17,13 +17,6 @@ jobs:
       with:
         dotnet-version: '8.0.x'
 
-    - name: Build the application
-      run: |
-        dotnet build 
-
-    - name: Publish app
-      run: dotnet publish -c Release -o out
-
     # Stop the service BEFORE copying files
     - name: Stop service on EC2
       uses: appleboy/ssh-action@master
